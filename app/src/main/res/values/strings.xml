@@ -2,6 +2,6 @@
     <string name="app_name">photoshare</string>
     <string name="title_activity_index">MainActivity</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_uopload">Upload</string>
+    <string name="title_setting">Setting</string>
 </resources>
