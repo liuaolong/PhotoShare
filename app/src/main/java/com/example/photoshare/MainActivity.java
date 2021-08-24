@@ -32,6 +32,9 @@ public class MainActivity extends AppCompatActivity //implements View.OnClickLis
     private String accountKey;
 
 
+
+
+
     private String passwordKey;
     private String rememberPasswordKey;
     private SharedPreferences spFile;
