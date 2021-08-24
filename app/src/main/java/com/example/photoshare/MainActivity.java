@@ -1,9 +1,13 @@
 package com.example.photoshare;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -33,6 +37,9 @@ public class MainActivity extends AppCompatActivity //implements View.OnClickLis
     private SharedPreferences spFile;
     private Boolean rememberPassword;
     private SharedPreferences.Editor editor;
+    private final int REQUEST_EXTERNAL_STORAGE = 1;
+    private static String[] PERMISSIONS_STORAGE ={ Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +47,18 @@ public class MainActivity extends AppCompatActivity //implements View.OnClickLis
         setContentView(R.layout.activity_main);
 
         Bmob.initialize(this, "f964d85568eec03d9551a9d29a53bfe3");
+
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(
+                    MainActivity.this,
+                    Manifest.permission.READ_EXTERNAL_STORAGE)) {
+            } else {
+                requestPermissions(PERMISSIONS_STORAGE,
+                        REQUEST_EXTERNAL_STORAGE);
+            }
+        }
 
         etPwd = findViewById(R.id.et_pwd);
         etAccount = findViewById(R.id.et_account);
