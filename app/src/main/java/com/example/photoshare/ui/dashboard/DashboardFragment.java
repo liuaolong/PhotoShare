@@ -29,6 +29,7 @@ import java.io.File;
 
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UploadFileListener;
 
 public class DashboardFragment extends Fragment {
@@ -69,9 +70,18 @@ public class DashboardFragment extends Fragment {
                         if(e==null){
                             UpLoadImg uploadimge = new UpLoadImg();
                             uploadimge.setFile(bmobFile);
+                            uploadimge.save(new SaveListener<String>() {
+                                @Override
+                                public void done(String objectId, BmobException e) {
+                                    if (e == null) {
+                                        Toast.makeText(getActivity(), "图片上传成功" + objectId, Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(getActivity(), "图片上传falure", Toast.LENGTH_SHORT).show();
+                                    }
+                                } });
                             //uploadimge.save();
                             //bmobFile.getFileUrl()--返回的上传文件的完整地址
-                            Toast.makeText(getActivity(),"图片上传成功",Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getActivity(),"图片上传成功",Toast.LENGTH_SHORT).show();
                         }else{
                             Toast.makeText(getActivity(),"图片上传失败"+e.getMessage(),Toast.LENGTH_SHORT).show();
                         }
@@ -225,10 +235,19 @@ public class DashboardFragment extends Fragment {
             @Override
             public void done(BmobException e) {
                 if (e == null) {
-//                    UpLoadImg uploadimge = new UpLoadImg();
-//                    uploadimge.setFile(icon);
-//                    uploadimge.save(getActivity());
-                    Toast.makeText(getActivity(),"图片上传成功",Toast.LENGTH_SHORT).show();
+                    UpLoadImg uploadimge = new UpLoadImg();
+                    uploadimge.setFile(icon);
+                    uploadimge.save(new SaveListener<String>() {
+                        @Override
+                        public void done(String objectId, BmobException e) {
+                            if (e == null) {
+                                Toast.makeText(getActivity(),"图片上传成功"+objectId,Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(getActivity(),"图片上传falure",Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                    //Toast.makeText(getActivity(),"图片上传成功",Toast.LENGTH_SHORT).show();
 
                     //bmobFile.getFileUrl()--返回的上传文件的完整地址
                     //toast("上传文件成功:" + icon.getFileUrl());
