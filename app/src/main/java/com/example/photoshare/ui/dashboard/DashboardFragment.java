@@ -3,6 +3,7 @@ package com.example.photoshare.ui.dashboard;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -11,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,9 +28,13 @@ import com.example.photoshare.UpLoadImg;
 import com.example.photoshare.databinding.FragmentDashboardBinding;
 
 import java.io.File;
+import java.util.List;
 
+import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.DownloadFileListener;
+import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UploadFileListener;
 
@@ -39,6 +45,7 @@ public class DashboardFragment extends Fragment {
     private Button uploadButton;
     private BmobFile img;
     private Intent data;
+    private ImageView imageview;
     private static final String IMAGE_NAME = " ";
     private static final String URI_A = "/sdcard/Pictures/iu1.jpg";
 
@@ -49,6 +56,8 @@ public class DashboardFragment extends Fragment {
 
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
+        imageview=root.findViewById(R.id.imageView);
 
         uploadButton= root.findViewById(R.id.button_upload);
         uploadButton.setOnClickListener(new View.OnClickListener(){
@@ -104,29 +113,44 @@ public class DashboardFragment extends Fragment {
 //                upload(img_url);
             }
         });
-//        Button downbutton=root.findViewById(R.id.button_download);
-//        downbutton.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v) {
-//                bmobQuery.findObjects(new FindListener<GameScore>() {
-//                    @Override
-//                    public void done(List<GameScore> object,BmobException e) {
-//                        if(e==null){
-//                            for (GameScore gameScore : object) {
-//                                BmobFile bmobfile = gameScore.getPic();
-//                                if(file!= null){
-//                                    //调用bmobfile.download方法
-//                                }
-//                            }
-//                        }else{
-//                            toast("查询失败："+e.getMessage());
-//                        }
-//                    }
-//                });
-//
-//            }
+        Button downbutton=root.findViewById(R.id.button_download);
+        downbutton.setOnClickListener(new View.OnClickListener(){
+            BmobQuery bmobQuery=new BmobQuery();
+            @Override
+            public void onClick(View v) {
+                bmobQuery.findObjects(new FindListener<UpLoadImg>() {
+                    @Override
+                    public void done(List<UpLoadImg> object, BmobException e) {
+                        if(e==null){
+                            for (UpLoadImg uploadimge : object) {
+                                BmobFile bmobfile = uploadimge.getFile();
+                                if(bmobfile!= null){
+                                    bmobfile.download(new DownloadFileListener() {
+                                        @Override
+                                        public void onProgress(Integer integer, long l) {
 
-//        });
+                                        }
+                                        @Override
+                                        public void done(String s, BmobException e) {
+                                            if(e == null){
+                                                imageview.setImageBitmap(BitmapFactory.decodeFile(s));
+                                                Toast.makeText(getActivity(),"查询成功"+s,Toast.LENGTH_SHORT).show(); }
+                                            else {Toast.makeText(getActivity(),"cant find it"+e.getMessage(),Toast.LENGTH_SHORT).show();}
+                                        }
+                                    });
+                                    //调用bmobfile.download方法
+                                }
+                            }
+                           // Toast.makeText(getActivity(),"查询成功"+e.getMessage(),Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(getActivity(),"查询失败"+e.getMessage(),Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+            }
+
+        });
 
 
 
