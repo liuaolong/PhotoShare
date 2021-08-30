@@ -28,11 +28,16 @@ public class UpLoadImg extends BmobObject {
 //        this.password = password;
 //    }
     public BmobFile getFile() {
+
         return file;
     }
+
     public void setFile(BmobFile file) {
+
         this.file = file;
     }
 
+    public String getfileurl(){
+        return file.getFileUrl();}
 
 }

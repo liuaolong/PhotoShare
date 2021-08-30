@@ -1,8 +1,10 @@
 package com.example.photoshare.ui.dashboard;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
@@ -47,7 +49,9 @@ public class DashboardFragment extends Fragment {
     private Intent data;
     private ImageView imageview;
     private static final String IMAGE_NAME = " ";
-    private static final String URI_A = "/sdcard/Pictures/iu1.jpg";
+    private static final String URI_A = "/sdcard/Pictures/Venice1.png";
+    private  String URI_B;
+    private String bitmapuri;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -70,7 +74,7 @@ public class DashboardFragment extends Fragment {
 //                intent.setAction(Intent.ACTION_GET_CONTENT);
 //                /* 取得相片后返回本画面 */
 //                startActivityForResult(intent, 1);
-//                //intent.addCategory(Intent.CATEGORY_OPENABLE);
+                //intent.addCategory(Intent.CATEGORY_OPENABLE);
 //                Toast.makeText(getActivity(),"success",Toast.LENGTH_SHORT).show();
                 BmobFile bmobFile = new BmobFile(new File(URI_A));
                 bmobFile.upload(new UploadFileListener() {
@@ -134,7 +138,11 @@ public class DashboardFragment extends Fragment {
                                         public void done(String s, BmobException e) {
                                             if(e == null){
                                                 imageview.setImageBitmap(BitmapFactory.decodeFile(s));
-                                                Toast.makeText(getActivity(),"查询成功"+s,Toast.LENGTH_SHORT).show(); }
+                                                Toast.makeText(getActivity(),"查询成功"+s,Toast.LENGTH_SHORT).show();
+                                                bitmapuri=s;
+                                                //bigImageLoader(BitmapFactory.decodeFile(s));
+
+                                            }
                                             else {Toast.makeText(getActivity(),"cant find it"+e.getMessage(),Toast.LENGTH_SHORT).show();}
                                         }
                                     });
@@ -146,11 +154,15 @@ public class DashboardFragment extends Fragment {
                             Toast.makeText(getActivity(),"查询失败"+e.getMessage(),Toast.LENGTH_SHORT).show();
                         }
                     }
-                });
+                });bigImageLoader(BitmapFactory.decodeFile(bitmapuri));
 
             }
 
         });
+        //bigImageLoader(BitmapFactory.decodeFile(bitmapuri));
+
+
+
 
 
 
@@ -203,6 +215,30 @@ public class DashboardFragment extends Fragment {
         return root;
     }
 
+
+    private void bigImageLoader(Bitmap bitmap){
+        final Dialog dialog = new Dialog(getActivity());
+        ImageView image = new ImageView(getContext());
+        image.setImageBitmap(bitmap);
+        dialog.setContentView(image);
+        //将dialog周围的白块设置为透明
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        //显示
+        image.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                dialog.show();
+            }
+        });
+        //dialog.show();
+        //点击图片取消
+//        image.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v){
+//                dialog.cancel();
+//            }
+//        });
+    }
 
 //    @Override
 //    public void onActivityCreated(Bundle savedInstanceState) {
