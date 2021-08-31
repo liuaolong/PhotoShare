@@ -57,7 +57,7 @@ public class ImgAdapter extends BaseAdapter {
                 image = lists.get(position).getFile();
             //LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_item, null);
-            viewHolder.titleContent = (TextView) convertView.findViewById(R.id.title_content);
+//            viewHolder.titleContent = (TextView) convertView.findViewById(R.id.title_content);
             viewHolder.icon = (ImageView) convertView.findViewById(R.id.title_pic);
             convertView.setTag(viewHolder);
 
@@ -68,14 +68,13 @@ public class ImgAdapter extends BaseAdapter {
                     //根据表中图片的url地址来得到图片（Bitmap类型）
                     final Bitmap bitmap=getPicture(lists.get(position).getFile().getFileUrl());
                     try {
-                        Thread.sleep(2000);
+                        Thread.sleep(10);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                     finalViewHolder.icon.post(new Runnable() {
                         @Override
                         public void run() {
-                            System.out.println("*********************************");
                             finalViewHolder.icon.setImageBitmap(bitmap);//将图片放到视图中去
                         }
                     });

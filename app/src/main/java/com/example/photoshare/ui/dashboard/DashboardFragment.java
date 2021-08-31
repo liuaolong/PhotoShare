@@ -49,7 +49,7 @@ public class DashboardFragment extends Fragment {
     private Intent data;
     private ImageView imageview;
     private static final String IMAGE_NAME = " ";
-    private static final String URI_A = "/sdcard/Pictures/Venice1.png";
+    private static final String URI_A = "/sdcard/Pictures/flower.png";
     private  String URI_B;
     private String bitmapuri;
 
