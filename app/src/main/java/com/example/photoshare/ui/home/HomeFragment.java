@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
@@ -42,7 +43,7 @@ public class HomeFragment extends Fragment {
     private List<UpLoadImg> list;
     private ImageLoader imageLoader = ImageLoader.getInstance();
     private ListView lvimg;
-
+    private  ImageAdapter adapter;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
@@ -56,12 +57,18 @@ public class HomeFragment extends Fragment {
         //imageLoader.init(ImageLoaderConfiguration.createDefault(getActivity()));
 
         //queryPage();
+        recyclerView=root.findViewById(R.id.rl);
 
-        lvimg=root.findViewById(R.id.main_list_view);
-
-        queryPage();
+       // lvimg=root.findViewById(R.id.main_list_view);
 
         //queryPage();
+
+        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
+
+        recyclerView.setLayoutManager(layoutManager);
+        //FruitAdapter adapter = new FruitAdapter(fruitList);
+
+        queryPage();
 
 
         //final TextView textView = binding.textHome;
@@ -157,7 +164,10 @@ public class HomeFragment extends Fragment {
             public void done(List<UpLoadImg> list, BmobException e) {
                 if (e == null) {
                     try {
-                        lvimg.setAdapter(new ImgAdapter(list));
+                       //vimg.setAdapter(new ImgAdapter(list));
+                        //adapter=new ImageAdapter(list,getContext());
+                        recyclerView.setAdapter(new ImageAdapter(list,getContext()));
+                        //Toast.makeText(getActivity(), "更新列为" + list.get(2).getFile().getFileUrl(), Toast.LENGTH_LONG).show();
                         Toast.makeText(getActivity(), "更新列为" + list.size()+"条", Toast.LENGTH_LONG).show();
                     }catch (Exception es){
                         es.printStackTrace();
