@@ -167,8 +167,8 @@ public class HomeFragment extends Fragment {
                        //vimg.setAdapter(new ImgAdapter(list));
                         //adapter=new ImageAdapter(list,getContext());
                         recyclerView.setAdapter(new ImageAdapter(list,getContext()));
-                        //Toast.makeText(getActivity(), "更新列为" + list.get(2).getFile().getFileUrl(), Toast.LENGTH_LONG).show();
-                        Toast.makeText(getActivity(), "更新列为" + list.size()+"条", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), "更新列为" + list.get(2).getLike_num(), Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getActivity(), "更新列为" + list.size()+"条", Toast.LENGTH_LONG).show();
                     }catch (Exception es){
                         es.printStackTrace();
                     }

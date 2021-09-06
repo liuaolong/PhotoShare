@@ -8,9 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -55,11 +57,14 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.myviewholder
 //                String url = list.get(position).getFile().getFileUrl();
 //                Glide.with(mContext).load(url).into(holder.UpImage);
 //            }});
+        holder.Textview.setText(""+list.get(position).getLike_num());
 
         new Thread(new Runnable() {
             @Override
             public void run() {
+                //holder.Textview.setText(list.get(position).getLike_num());
                 Bitmap bitmap=getPicture(list.get(position).getFile().getFileUrl());
+
                 try {
                     Thread.sleep(10);
                 } catch (InterruptedException e) {
@@ -125,12 +130,14 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.myviewholder
     }
 
     class myviewholder extends RecyclerView.ViewHolder{
-        View ImgView;
+        CardView ImgView;
         ImageView UpImage;
+        TextView Textview;
         public myviewholder(@NonNull View itemView) {
             super(itemView);
-            ImgView = itemView;
+            ImgView = (CardView)itemView;
             UpImage = itemView.findViewById(R.id.title_pic);
+            Textview = itemView.findViewById(R.id.like_num);
         }
     }
 

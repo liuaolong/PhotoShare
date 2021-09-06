@@ -8,6 +8,7 @@ public class UpLoadImg extends BmobObject {
 //    private String Name;
 //    private String password;
     private BmobFile file;
+    private Integer like_num;
 
 //    public UpLoadImg(String Name,String password,BmobFile file){
 //        this.Name = Name;
@@ -30,6 +31,14 @@ public class UpLoadImg extends BmobObject {
     public BmobFile getFile() {
 
         return file;
+    }
+
+    public Integer getLike_num(){
+        return like_num;
+    }
+
+    public void setLike_num(Integer like_num){
+        this.like_num=like_num;
     }
 
     public void setFile(BmobFile file) {
