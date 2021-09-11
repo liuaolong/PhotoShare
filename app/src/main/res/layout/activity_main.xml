@@ -110,15 +110,19 @@
         android:layout_marginBottom="32dp"
         android:layout_weight="1"
         android:layout_height="wrap_content">
+
+
         <Button
             android:id="@+id/bt_login"
-            android:text="Login"
-            android:textColor="@android:color/white"
-            android:background="#5C1E1E"
-            android:layout_marginTop="32dp"
-            android:layout_alignParentTop="true"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="39dp"
+            android:layout_marginEnd="0dp"
+            android:background="@drawable/circle_shape"
+            android:text="Login"
+            android:textColor="@android:color/white" />
 
         <Button
             android:id="@+id/bt_register"
