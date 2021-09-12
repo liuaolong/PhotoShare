@@ -77,7 +77,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.myviewholder
                         }
                     });}
             }).start();
-
+            //do nothing
 
 
 //        String bitmapuri;
