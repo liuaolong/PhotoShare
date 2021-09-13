@@ -46,6 +46,21 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.myviewholder
         }
         inflater = LayoutInflater.from(mContext).inflate(R.layout.home_item,viewGroup,false);
         myviewholder myviewholder = new myviewholder(inflater);
+
+        myviewholder.UpImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        myviewholder.Like.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
         return myviewholder;
     }
 
@@ -58,6 +73,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.myviewholder
 //                Glide.with(mContext).load(url).into(holder.UpImage);
 //            }});
         holder.Textview.setText(""+list.get(position).getLike_num());
+
 
         new Thread(new Runnable() {
             @Override
@@ -133,11 +149,13 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.myviewholder
         CardView ImgView;
         ImageView UpImage;
         TextView Textview;
+        ImageView Like;
         public myviewholder(@NonNull View itemView) {
             super(itemView);
             ImgView = (CardView)itemView;
             UpImage = itemView.findViewById(R.id.title_pic);
             Textview = itemView.findViewById(R.id.like_num);
+            Like=itemView.findViewById(R.id.like);
         }
     }
 

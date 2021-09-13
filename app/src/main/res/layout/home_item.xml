@@ -64,7 +64,7 @@
                             android:textSize="20sp" />
 
                         <ImageView
-                            android:id="@+id/imageView3"
+                            android:id="@+id/like"
                             android:layout_width="46dp"
                             android:layout_height="match_parent"
 
