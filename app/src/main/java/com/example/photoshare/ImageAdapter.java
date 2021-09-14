@@ -80,7 +80,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.myviewholder
                 Integer like_number=list.get(position).getLike_num();
                 Toast.makeText(mContext, "111", Toast.LENGTH_SHORT).show();
                 list.get(position).setLike_num(like_number+1);
-                holder.Textview.setText(""+(list.get(position).getLike_num()));
+                holder.Textview.setText(""+list.get(position).getLike_num());
             }
         });
 
