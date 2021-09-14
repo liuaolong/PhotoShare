@@ -47,19 +47,19 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.myviewholder
         inflater = LayoutInflater.from(mContext).inflate(R.layout.home_item,viewGroup,false);
         myviewholder myviewholder = new myviewholder(inflater);
 
-        myviewholder.UpImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+//        myviewholder.UpImage.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
 
-            }
-        });
-
-        myviewholder.Like.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
+//        myviewholder.Like.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
 
         return myviewholder;
     }
@@ -73,6 +73,26 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.myviewholder
 //                Glide.with(mContext).load(url).into(holder.UpImage);
 //            }});
         holder.Textview.setText(""+list.get(position).getLike_num());
+
+        holder.Like.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Integer like_number=list.get(position).getLike_num();
+                Toast.makeText(mContext, "111", Toast.LENGTH_SHORT).show();
+                list.get(position).setLike_num(like_number+1);
+                holder.Textview.setText(""+(list.get(position).getLike_num()));
+            }
+        });
+
+        holder.UpImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                int like_number=list.get(position).getLike_num();
+//                list.get(position).setLike_num(like_number+1);
+            }
+        });
+
+
 
 
         new Thread(new Runnable() {
