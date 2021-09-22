@@ -1,8 +1,11 @@
 package com.example.photoshare;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +36,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.myviewholder
     private View inflater;
     private  String bitmapuri;
     private Context mContext;
+    Bitmap bm;
 
     public ImageAdapter(List<UpLoadImg> UpLoadImgList,Context context) {
         this.list = UpLoadImgList;
@@ -78,7 +82,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.myviewholder
             @Override
             public void onClick(View v) {
                 Integer like_number=list.get(position).getLike_num();
-                Toast.makeText(mContext, "111", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "like succeed", Toast.LENGTH_SHORT).show();
                 list.get(position).setLike_num(like_number+1);
                 holder.Textview.setText(""+list.get(position).getLike_num());
             }
@@ -89,6 +93,16 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.myviewholder
             public void onClick(View v) {
 //                int like_number=list.get(position).getLike_num();
 //                list.get(position).setLike_num(like_number+1);
+   //             Bitmap bitmap0 = ((BitmapDrawable)bm.getDrawable()).getBitmap();
+    //            bigImageLoader(bitmap0);
+//                v.getContext().startActivity(
+//                        new Intent(v.getContext(), OtherActivity.class),
+//                        // 注意这里的sharedView
+//                        // Content，View（动画作用view），String（和XML一样）
+//                        ActivityOptions.makeSceneTransitionAnimation((Activity) view.getContext(), view, "sharedView").toBundle());
+
+
+
             }
         });
 
@@ -178,5 +192,23 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.myviewholder
             Like=itemView.findViewById(R.id.like);
         }
     }
+
+//    private void bigImageLoader(Bitmap bitmap,Dialog dialog1,ImageView image1){
+//        final Dialog dialog=dialog1 ;//= new Dialog(getActivity());
+//        ImageView image=image1;// = new ImageView(getContext());
+//        image.setImageBitmap(bitmap);
+//        dialog.setContentView(image);
+//        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+//        dialog.show();
+//        image.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v){
+//                dialog.cancel();
+//            }
+//        });
+//    }
+
+
+
 
 }
