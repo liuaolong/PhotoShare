@@ -10,15 +10,15 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="350dp"
         android:layout_weight="1">
         android:layout_marginTop="48dp">
 
-        <ImageView
-            android:layout_width="224dp"
-            android:layout_height="163dp"
-            android:layout_centerInParent="true"
-            android:src="@mipmap/logo" />
+        <!--        <ImageView-->
+        <!--            android:layout_width="224dp"-->
+        <!--            android:layout_height="163dp"-->
+        <!--            android:layout_centerInParent="true"-->
+        <!--            android:src="@mipmap/logo" />-->
     </RelativeLayout>
 
     <RelativeLayout
@@ -94,16 +94,16 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"/>
 
-        <TextView
-            android:id="@+id/tv_sign_up"
-            android:text="Sign up"
-            android:textColor="?attr/colorAccent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@id/cb_remember_pwd"
-            android:layout_marginEnd="8dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"/>
+<!--        <TextView-->
+<!--            android:id="@+id/tv_sign_up"-->
+<!--            android:text="Sign up"-->
+<!--            android:textColor="?attr/colorAccent"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignBaseline="@id/cb_remember_pwd"-->
+<!--            android:layout_marginEnd="8dp"-->
+<!--            android:layout_alignParentEnd="true"-->
+<!--            android:layout_alignParentBottom="true"/>-->
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -114,27 +114,27 @@
 
         <Button
             android:id="@+id/bt_login"
-            android:layout_width="match_parent"
+            android:layout_width="240dp"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="39dp"
-            android:layout_marginEnd="0dp"
+            android:layout_marginTop="38dp"
+            android:layout_marginEnd="85dp"
             android:background="@drawable/circle_shape"
             android:text="Login"
-            android:textColor="@android:color/white" />
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/bt_register"
-            android:layout_width="match_parent"
+            android:layout_width="240dp"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="97dp"
-            android:layout_marginEnd="4dp"
-            android:background="#4F912E"
+            android:layout_marginEnd="85dp"
+            android:background="@drawable/circle_shape"
             android:text="Register"
-            android:textColor="@android:color/white" />
+            android:textColor="@color/white" />
 
 
     </RelativeLayout>
