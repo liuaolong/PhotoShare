@@ -106,6 +106,35 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.myviewholder
             }
         });
 
+        holder.Down.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(mContext, "download succeed", Toast.LENGTH_SHORT).show();
+                //Integer like_number=list.get(position).getLike_num();
+                //Toast.makeText(mContext, "like succeed", Toast.LENGTH_SHORT).show();
+//                new Thread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                UpLoadImg p2 = new UpLoadImg();
+//                p2.setLike_num(like_number+1);
+//                p2.update(list.get(position).getObjectId(), new UpdateListener() {
+//
+//                    @Override
+//                    public void done(BmobException e) {
+//                        if(e==null){
+//                            Toast.makeText(mContext, "like succeed", Toast.LENGTH_SHORT).show();
+//                        }else{
+//                            Toast.makeText(mContext, "like f", Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//
+//                });//}});
+//                list.get(position).setLike_num(like_number+1);
+//                holder.Textview.setText(""+list.get(position).getLike_num());
+            }
+        });
+
         holder.UpImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -202,12 +231,15 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.myviewholder
         ImageView UpImage;
         TextView Textview;
         ImageView Like;
+        ImageView Down;
         public myviewholder(@NonNull View itemView) {
             super(itemView);
             ImgView = (CardView)itemView;
             UpImage = itemView.findViewById(R.id.title_pic);
             Textview = itemView.findViewById(R.id.like_num);
             Like=itemView.findViewById(R.id.like);
+            Down=itemView.findViewById(R.id.download);
+
         }
     }
 
