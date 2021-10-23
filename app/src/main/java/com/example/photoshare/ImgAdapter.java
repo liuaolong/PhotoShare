@@ -1,5 +1,11 @@
 package com.example.photoshare;
 
+/*
+* 用于初步开发用
+* 现已更换为imagedapter类
+* android大作业
+*
+*/
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -55,9 +61,9 @@ public class ImgAdapter extends BaseAdapter {
         if (convertView == null) {
             BmobFile image;
                 image = lists.get(position).getFile();
-            //LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
             convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_item, null);
-//            viewHolder.titleContent = (TextView) convertView.findViewById(R.id.title_content);
+
             viewHolder.icon = (ImageView) convertView.findViewById(R.id.title_pic);
             convertView.setTag(viewHolder);
 
@@ -80,25 +86,12 @@ public class ImgAdapter extends BaseAdapter {
                     });
                 }
             }).start();
-//            viewHolder.tv_name.setText(name);
-//            viewHolder.tv_price.setText(String.valueOf(price));   //将double数据放到textView中
-//            viewHolder.tv_desc.setText(desc);
+
 
         }else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        // 创建DisplayImageOptions对象并进行相关选项配置
-//        DisplayImageOptions options = new DisplayImageOptions.Builder()
-//                .showImageOnLoading(R.drawable.ic_launcher_background)// 设置图片下载期间显示的图片
-//                .showImageForEmptyUri(R.drawable.ic_launcher_background)// 设置图片Uri为空或是错误的时候显示的图片
-//                .showImageOnFail(R.drawable.ic_launcher_background)// 设置图片加载或解码过程中发生错误显示的图片
-//                .cacheInMemory(true)// 设置下载的图片是否缓存在内存中
-//                .cacheOnDisk(true)// 设置下载的图片是否缓存在SD卡中
-//                .displayer(new RoundedBitmapDisplayer(20))// 设置成圆角图片
-//                .build();// 创建DisplayImageOptions对象
-        // 使用ImageLoader加载图片
-        //imageLoader.displayImage(lists.get(position).getFile().getFileUrl(),viewHolder.icon);
-       // viewHolder.titleContent.setText(lists.get(position).getName());
+
         return  convertView;
     }
 

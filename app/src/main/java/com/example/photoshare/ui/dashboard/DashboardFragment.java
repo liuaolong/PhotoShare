@@ -67,15 +67,7 @@ public class DashboardFragment extends Fragment {
         uploadButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent();
-//                /* 开启Pictures画面Type设定为image */
-//                intent.setType("image/*");
-//                /* 使用Intent.ACTION_GET_CONTENT这个Action */
-//                intent.setAction(Intent.ACTION_GET_CONTENT);
-//                /* 取得相片后返回本画面 */
-//                startActivityForResult(intent, 1);
-                //intent.addCategory(Intent.CATEGORY_OPENABLE);
-//                Toast.makeText(getActivity(),"success",Toast.LENGTH_SHORT).show();
+
                 BmobFile bmobFile = new BmobFile(new File(URI_A));
                 bmobFile.upload(new UploadFileListener() {
                     @Override
@@ -92,9 +84,7 @@ public class DashboardFragment extends Fragment {
                                         Toast.makeText(getActivity(), "图片上传falure", Toast.LENGTH_SHORT).show();
                                     }
                                 } });
-                            //uploadimge.save();
-                            //bmobFile.getFileUrl()--返回的上传文件的完整地址
-                            //Toast.makeText(getActivity(),"图片上传成功",Toast.LENGTH_SHORT).show();
+
                         }else{
                             Toast.makeText(getActivity(),"图片上传失败"+e.getMessage(),Toast.LENGTH_SHORT).show();
                         }
@@ -103,18 +93,10 @@ public class DashboardFragment extends Fragment {
 
                     @Override
                     public void onProgress(Integer value) {
-                        // 返回的上传进度（百分比）
+
                     }
                 });
-//                Uri uri = data.getData();
-//                resizeImage(uri);
-//                // 将获取到的uri转换为String型
-//                String[] images = { MediaStore.Images.Media.DATA };// 将图片URI转换成存储路径
-//                Cursor cursor = getActivity().managedQuery(uri, images, null, null, null);
-//                int index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-//                cursor.moveToFirst();
-//                String img_url = cursor.getString(index);
-//                upload(img_url);
+
             }
         });
         Button downbutton=root.findViewById(R.id.button_download);
@@ -146,10 +128,10 @@ public class DashboardFragment extends Fragment {
                                             else {Toast.makeText(getActivity(),"cant find it"+e.getMessage(),Toast.LENGTH_SHORT).show();}
                                         }
                                     });
-                                    //调用bmobfile.download方法
+
                                 }
                             }
-                           // Toast.makeText(getActivity(),"查询成功"+e.getMessage(),Toast.LENGTH_SHORT).show();
+
                         }else{
                             Toast.makeText(getActivity(),"查询失败"+e.getMessage(),Toast.LENGTH_SHORT).show();
                         }
@@ -159,7 +141,6 @@ public class DashboardFragment extends Fragment {
             }
 
         });
-        //bigImageLoader(BitmapFactory.decodeFile(bitmapuri));
 
 
 
@@ -167,51 +148,7 @@ public class DashboardFragment extends Fragment {
 
 
 
-//            @SuppressWarnings("unused")
-//            @Override
-//            public void onClick(View v) {
-//                // TODO Auto-generated method stub
-//                File file = new File("/mnt/sdcard/"+Path);
-//                if (file != null) {
-//                    final BmobFile bmobFile = new BmobFile(file);
-//                    final ProgressDialog progressDialog = new ProgressDialog(DashboardFragment.this);
-//                    progressDialog.setMessage("正在上传。。。");
-//                    progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-//                    progressDialog.show();
-//                    bmobFile.upload(DashboardFragment.this, new UploadFileListener() {
-//
-//                        @Override
-//                        public void onSuccess() {
-//                            // TODO Auto-generated method stub
-//                            String url = bmobFile.getUrl();
-//                            insertObject(new UpLoadImg("绝地反击","123456",bmobFile));
-//                            Toast.makeText(DashboardFragment.this, "上传成功", Toast.LENGTH_SHORT).show();
-//                            progressDialog.dismiss();
-//                        }
-//
-//                        @Override
-//                        public void onFailure(int arg0, String arg1) {
-//                            // TODO Auto-generated method stub
-//                            Toast.makeText(DashboardFragment.this, "上传失败"+arg1, Toast.LENGTH_SHORT).show();
-//                        }
-//
-//                    });
-//                }else {
-//                    Toast.makeText(DashboardFragment.this, "文件为空", Toast.LENGTH_SHORT).show();
-//                }
-//
-//            }
 
-
-
-      //  });
-        /*final TextView textView = binding.textDashboard;
-        dashboardViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });*/
         return root;
     }
 
@@ -240,37 +177,6 @@ public class DashboardFragment extends Fragment {
         });
     }
 
-//    @Override
-//    public void onActivityCreated(Bundle savedInstanceState) {
-//        super.onActivityCreated(savedInstanceState);
-//        uploadButton = getActivity().findViewById(R.id.button_upload);
-//        //Button button = (Button) getActivity().findViewById(R.id.button);
-//        //button.setOnClickListener(new OnClickListener() {
-//        //uploadButton= root.findViewById(R.id.button_upload);
-//        uploadButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent();
-//                /* 开启Pictures画面Type设定为image */
-//                intent.setType("image/*");
-//                /* 使用Intent.ACTION_GET_CONTENT这个Action */
-//                intent.setAction(Intent.ACTION_GET_CONTENT);
-//                /* 取得相片后返回本画面 */
-//                //startActivityForResult(intent, 1);
-//                //intent.addCategory(Intent.CATEGORY_OPENABLE);
-//            }
-//        });
-//        Uri uri = data.getData();
-//        resizeImage(uri);
-//        // 将获取到的uri转换为String型
-//        String[] images = { MediaStore.Images.Media.DATA };// 将图片URI转换成存储路径
-//        Cursor cursor = this.managedQuery(uri, images, null, null, null);
-//        int index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-//        cursor.moveToFirst();
-//        String img_url = cursor.getString(index);
-//        upload(img_url);
-//
-//    }
 
     public void resizeImage(Uri uri) {
         Intent intent = new Intent("com.android.camera.action.CROP");
@@ -307,12 +213,9 @@ public class DashboardFragment extends Fragment {
                             }
                         }
                     });
-                    //Toast.makeText(getActivity(),"图片上传成功",Toast.LENGTH_SHORT).show();
 
-                    //bmobFile.getFileUrl()--返回的上传文件的完整地址
-                    //toast("上传文件成功:" + icon.getFileUrl());
                 } else {
-                    //toast("上传文件失败：" + e.getMessage());
+
                     Toast.makeText(getActivity(),"图片上传失败",Toast.LENGTH_SHORT).show();
                 }
 

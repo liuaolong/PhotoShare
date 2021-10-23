@@ -5,73 +5,53 @@ import java.util.List;
 import cn.bmob.v3.BmobObject;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.datatype.BmobGeoPoint;
-
+/*
+用于熟悉bmob操作用
+该项目中并没有使用到该类
+Android大作业
+ */
 public class User extends BmobObject {
-    /**
-     * 昵称
-     */
+
     private String nickname;
 
     //密码
     private String pwd;
 
-    /**
-     * 国家
-     */
+
 
     private String country;
 
-    /**
-     * 得分数
-     */
+
     private Integer score;
 
 
-    /**
-     * 抢断次数
-     */
     private Integer steal;
 
 
-    /**
-     * 犯规次数
-     */
     private Integer foul;
 
 
-    /**
-     * 失误个数
-     */
+
     private Integer fault;
 
 
-    /**
-     * 年龄
-     */
+
     private Integer age;
 
 
-    /**
-     * 性别
-     */
+
     private Integer gender;
 
 
-    /**
-     * 用户当前位置
-     */
+
     private BmobGeoPoint address;
 
 
-    /**
-     * 头像
-     */
+
     private BmobFile avatar;
 
 
-    /**
-     * 别名
-     */
+
     private List<String> alias;
 
 

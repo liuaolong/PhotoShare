@@ -120,52 +120,5 @@ public class MainActivity extends AppCompatActivity //implements View.OnClickLis
 
 
 
-       // btLogin.setOnClickListener(this);
-
-       /* spFileName = getResources()
-                .getString(R.string.shared_preferences_file_name);
-        accountKey = getResources()
-                .getString(R.string.login_account_name);
-        passwordKey =  getResources()
-                .getString(R.string.login_password);
-        rememberPasswordKey = getResources()
-                .getString(R.string.login_remember_password);*/
-
-        /*spFile = getSharedPreferences(
-                spFileName,
-                MODE_PRIVATE);
-        editor = spFile.edit();
-        account = spFile.getString(accountKey, null);
-        password = spFile.getString(passwordKey, null);
-        rememberPassword = spFile.getBoolean(
-                rememberPasswordKey,
-                false);
-
-        if (account != null && !TextUtils.isEmpty(account)) {
-            etAccount.setText(account);
-        }
-
-        if (password != null && !TextUtils.isEmpty(password)) {
-            etPwd.setText(password);
-        }
-
-        cbRememberPwd.setChecked(rememberPassword);
-    }
-    @Override
-    public void onClick(View view) {if (cbRememberPwd.isChecked()) {
-        String password1 = etPwd.getText().toString();
-        String account1 = etAccount.getText().toString();
-
-        editor.putString(accountKey, account1);
-        editor.putString(passwordKey, password1);
-        editor.putBoolean(rememberPasswordKey, true);
-        editor.apply();
-    }
-    else {
-        editor.remove(accountKey);
-        editor.remove(passwordKey);
-        editor.remove(rememberPasswordKey);
-        editor.apply();
-    }*/
     }
 }
