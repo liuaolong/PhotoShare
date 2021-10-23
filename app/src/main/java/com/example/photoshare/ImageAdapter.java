@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -27,9 +31,11 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.List;
 
+import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.DownloadFileListener;
+import cn.bmob.v3.listener.QueryListener;
 import cn.bmob.v3.listener.UpdateListener;
 
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.myviewholder> {
@@ -110,7 +116,42 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.myviewholder
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(mContext, "download succeed", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(mContext, "download succeed", Toast.LENGTH_SHORT).show();
+
+                BmobQuery<UpLoadImg> bmobQuery = new BmobQuery<UpLoadImg>();
+                bmobQuery.getObject(list.get(position).getObjectId(), new QueryListener<UpLoadImg>() {
+                    @Override
+                    public void done(UpLoadImg object,BmobException e) {
+                        if(e==null){
+                            BmobFile bmobfile = object.getFile();
+                            if(bmobfile!= null){
+                                //调用bmobfile.download方法
+                                downloadFile(bmobfile);
+                                //Toast.makeText(mContext, "download succeed", Toast.LENGTH_SHORT).show();
+                            }
+                            //Toast.makeText(mContext, "download succeed", Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(mContext, "download f", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+//                UpLoadImg p2 = new UpLoadImg();
+//                //p2.setLike_num(like_number+1);
+//                p2.update(list.get(position).getObjectId(), new UpdateListener() {
+//
+//                    @Override
+//                    public void done(BmobException e) {
+//                        if(e==null){
+//                            Toast.makeText(mContext, "like succeed", Toast.LENGTH_SHORT).show();
+//                        }else{
+//                            Toast.makeText(mContext, "like f", Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//
+//                });
+
+
                 //Integer like_number=list.get(position).getLike_num();
                 //Toast.makeText(mContext, "like succeed", Toast.LENGTH_SHORT).show();
 //                new Thread(new Runnable() {
@@ -156,6 +197,8 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.myviewholder
 
 
 
+
+
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -175,6 +218,8 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.myviewholder
                     });}
             }).start();
             //do nothing
+
+
 
 
 //        String bitmapuri;
@@ -219,6 +264,45 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.myviewholder
             e.printStackTrace();
         }
         return  bm;
+    }
+
+    private void downloadFile(BmobFile file){
+        //允许设置下载文件的存储路径，默认下载文件的目录为：context.getApplicationContext().getCacheDir()+"/bmob/"
+
+        String res=mContext.getFilesDir().toString();
+        File saveFile = new File(//Environment.getExternalStorageDirectory(),
+               //"/data/data/com.example.photoshare/databases"
+                res
+                ,file.getFilename());
+        file.download(saveFile, new DownloadFileListener() {
+
+            @Override
+            public void onStart() {
+                //Toast.makeText(mContext, "download begin", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void done(String savePath,BmobException e) {
+                if(e==null){
+                    try {
+                    MediaStore.Images.Media.insertImage(mContext.getContentResolver(),savePath,file.getFilename(),null);
+
+                    Toast.makeText(mContext, "download succeed!!!", Toast.LENGTH_SHORT).show();}
+                    catch (Exception e1) {
+
+                            e.printStackTrace();}
+                }else{
+                    Toast.makeText(mContext, "download f"+e.getErrorCode()+","+e.getMessage(), Toast.LENGTH_SHORT).show();
+                    //toast("下载失败："+e.getErrorCode()+","+e.getMessage());
+                }
+            }
+
+            @Override
+            public void onProgress(Integer value, long newworkSpeed) {
+                Log.i("bmob","下载进度："+value+","+newworkSpeed);
+            }
+
+        });
     }
 
     @Override
