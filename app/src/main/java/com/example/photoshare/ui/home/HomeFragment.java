@@ -3,6 +3,8 @@ package com.example.photoshare.ui.home;
 import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +29,7 @@ import com.example.photoshare.databinding.FragmentHomeBinding;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
+import java.io.File;
 import java.util.List;
 
 import cn.bmob.v3.BmobQuery;
@@ -167,6 +170,7 @@ public class HomeFragment extends Fragment {
                        //vimg.setAdapter(new ImgAdapter(list));
                         //adapter=new ImageAdapter(list,getContext());
                         recyclerView.setAdapter(new ImageAdapter(list,getContext()));
+                        //downloadFile();
 //                        Toast.makeText(getActivity(), "更新列为" + list.get(2).getLike_num(), Toast.LENGTH_LONG).show();
                         Toast.makeText(getActivity(), "更新列为" + list.size()+"条", Toast.LENGTH_LONG).show();
                     }catch (Exception es){
@@ -183,5 +187,32 @@ public class HomeFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    private void downloadFile(BmobFile file){
+        //允许设置下载文件的存储路径，默认下载文件的目录为：context.getApplicationContext().getCacheDir()+"/bmob/"
+        File saveFile = new File("/res/images", file.getFilename());
+        file.download(saveFile, new DownloadFileListener() {
+
+            @Override
+            public void onStart() {
+                //toast("开始下载...");
+            }
+
+            @Override
+            public void done(String savePath,BmobException e) {
+                if(e==null){
+                    //toast("下载成功,保存路径:"+savePath);
+                }else{
+                    //toast("下载失败："+e.getErrorCode()+","+e.getMessage());
+                }
+            }
+
+            @Override
+            public void onProgress(Integer value, long newworkSpeed) {
+                Log.i("bmob","下载进度："+value+","+newworkSpeed);
+            }
+
+        });
     }
 }

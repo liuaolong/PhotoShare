@@ -30,6 +30,7 @@ import java.util.List;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.DownloadFileListener;
+import cn.bmob.v3.listener.UpdateListener;
 
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.myviewholder> {
     private List<UpLoadImg> list;
@@ -82,7 +83,24 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.myviewholder
             @Override
             public void onClick(View v) {
                 Integer like_number=list.get(position).getLike_num();
-                Toast.makeText(mContext, "like succeed", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(mContext, "like succeed", Toast.LENGTH_SHORT).show();
+//                new Thread(new Runnable() {
+//                    @Override
+//                    public void run() {
+                UpLoadImg p2 = new UpLoadImg();
+                p2.setLike_num(like_number+1);
+                p2.update(list.get(position).getObjectId(), new UpdateListener() {
+
+                    @Override
+                    public void done(BmobException e) {
+                        if(e==null){
+                            Toast.makeText(mContext, "like succeed", Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(mContext, "like f", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                });//}});
                 list.get(position).setLike_num(like_number+1);
                 holder.Textview.setText(""+list.get(position).getLike_num());
             }

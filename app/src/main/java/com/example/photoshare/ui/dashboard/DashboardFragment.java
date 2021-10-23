@@ -230,14 +230,14 @@ public class DashboardFragment extends Fragment {
                 dialog.show();
             }
         });
-        //dialog.show();
-        //点击图片取消
-//        image.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v){
-//                dialog.cancel();
-//            }
-//        });
+        dialog.show();
+       // 点击图片取消
+        image.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                dialog.cancel();
+            }
+        });
     }
 
 //    @Override

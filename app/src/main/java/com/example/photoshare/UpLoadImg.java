@@ -9,6 +9,7 @@ public class UpLoadImg extends BmobObject {
 //    private String password;
     private BmobFile file;
     private Integer like_num;
+   //private  String objectId;
 
 //    public UpLoadImg(String Name,String password,BmobFile file){
 //        this.Name = Name;
@@ -45,6 +46,10 @@ public class UpLoadImg extends BmobObject {
 
         this.file = file;
     }
+
+//    public String getObjectid(){
+//        return objectId;
+//    }
 
     public String getfileurl(){
         return file.getFileUrl();}
