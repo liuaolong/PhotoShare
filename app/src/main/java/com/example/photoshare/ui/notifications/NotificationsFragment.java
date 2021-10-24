@@ -108,9 +108,9 @@ public class NotificationsFragment extends Fragment {
 
             }
 
-                private String getRealPathFromUriBelowAPI19 (Context context, Uri uri){
-                    return getDataColumn(context, uri, null, null);
-                }
+            private String getRealPathFromUriBelowAPI19 (Context context, Uri uri){
+                return getDataColumn(context, uri, null, null);
+            }
 
 
             /**
@@ -203,13 +203,13 @@ public class NotificationsFragment extends Fragment {
 
 
 
-        protected void onActivityResult ( int requestCode, int resultCode, Intent data) {
-            if (resultCode == 1) {
-                Log.e("TAG->onresult", "ActivityResult resultCode error");
-                return;
-            }}
+            protected void onActivityResult ( int requestCode, int resultCode, Intent data) {
+                if (resultCode == 1) {
+                    Log.e("TAG->onresult", "ActivityResult resultCode error");
+                    return;
+                }}
         });
-   // });
+        // });
 //          Bitmap bt = BitmapFactory.decodeFile(path);// 从SD卡中找头像，转换成Bitmap
 //            if (bt != null) {
 //                ima.setImageBitmap(bt);
@@ -231,7 +231,7 @@ dialog.setView(view);
  dialog.show();
 */
         return root;
-}
+    }
 
 
     @Override
