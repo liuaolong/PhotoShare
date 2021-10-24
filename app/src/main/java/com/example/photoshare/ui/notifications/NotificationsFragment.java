@@ -98,11 +98,11 @@ public class NotificationsFragment extends Fragment {
                 //URI_A = getRealPathFromUriAboveApi19(getContext(),originalUri);
                 Bitmap bt = BitmapFactory.decodeFile(URI_B);
                 if (bt != null) {
-                    Toast.makeText(getActivity(), "注", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), "修改成功", Toast.LENGTH_LONG).show();
                     ima.setImageBitmap(bt);
 
                 } else {
-                    Toast.makeText(getActivity(), "0000", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), "没有找到文件", Toast.LENGTH_LONG).show();
 
                 }
 
