@@ -6,42 +6,29 @@
     android:layout_height="match_parent"
     tools:context=".ui.dashboard.DashboardFragment">
 
-    <Button
-        android:id="@+id/button_upload"
-        android:layout_width="140dp"
-        android:layout_height="0dp"
-        android:layout_gravity="center_horizontal"
-        android:hint="Sign up"
-        android:text="upload"
-        android:textSize="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="127dp" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginBottom="144dp"
+        android:layout_width="261dp"
+        android:layout_height="250dp"
+        android:layout_marginBottom="352dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/button_upload"
-        app:layout_constraintTop_toBottomOf="@+id/button_upload"
-        app:layout_constraintVertical_bias="0.707"
-        tools:src="@tools:sample/avatars" />
+        tools:layout_editor_absoluteX="75dp" />
+
+
 
     <Button
-        android:id="@+id/button_download"
+        android:id="@+id/button_upload"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="287dp"
-        android:text="download"
+        android:text="上传图片"
+        android:textSize="16px"
+        android:layout_marginBottom="280dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.479"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_upload"
-        app:layout_constraintVertical_bias="0.275" />
+        app:layout_constraintVertical_bias="0.142" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
